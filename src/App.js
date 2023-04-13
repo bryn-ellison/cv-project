@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Education } from "./components/education";
+import { General } from "./components/general";
+import { Preview } from "./components/preview";
 
 function App() {
+  const [general, setGeneral] = useState({});
+  const updateGeneral = (obj) => {
+    setGeneral(obj);
+  };
+
+  const [educationList, setEducationList] = useState([]);
+  const updateEducation = (eduArray) => {
+    setEducationList(eduArray);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>CV Builder</h1>
+      <General updateGeneral={updateGeneral} />
+      <Education updateEducation={updateEducation} />
+      <Preview general={general} education={educationList} />
     </div>
   );
 }
